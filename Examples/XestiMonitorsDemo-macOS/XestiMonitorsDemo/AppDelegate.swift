@@ -1,26 +1,24 @@
 //
 //  AppDelegate.swift
-//  XestiMonitorsDemo
+//  XestiMonitors
 //
-//  Created by John Pusey on 1/12/18.
-//  Copyright © 2018 Xesticode. All rights reserved.
+//  Created by J. G. Pusey on 2018-01-12.
+//
+//  © 2018 J. G. Pusey (see LICENSE.md)
 //
 
 import Cocoa
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
+public class AppDelegate: NSObject, NSApplicationDelegate {
 
+    // MARK: NSApplicationDelegate Methods
 
-
-    func applicationDidFinishLaunching(_ aNotification: Notification) {
+    public func applicationDidFinishLaunching(_ notification: Notification) {
         // Insert code here to initialize your application
     }
 
-    func applicationWillTerminate(_ aNotification: Notification) {
+    public func applicationWillTerminate(_ notification: Notification) {
         // Insert code here to tear down your application
     }
-
-
 }
-

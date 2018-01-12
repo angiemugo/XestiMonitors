@@ -1,0 +1,18 @@
+PODS:
+  - XestiMonitors (2.0.0):
+    - XestiMonitors/Core (= 2.0.0)
+  - XestiMonitors/Core (2.0.0)
+
+DEPENDENCIES:
+  - XestiMonitors (from `../../`)
+
+EXTERNAL SOURCES:
+  XestiMonitors:
+    :path: ../../
+
+SPEC CHECKSUMS:
+  XestiMonitors: 847a2d2a35d3a0301879b4734afaa1f5557e36e2
+
+PODFILE CHECKSUM: 0ec4821cd181273c02ed20cfa0e173a4a5f3f54b
+
+COCOAPODS: 1.3.1
