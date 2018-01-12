@@ -1,0 +1,596 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F5BDE71C2009690100D600EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BDE71B2009690100D600EF /* AppDelegate.swift */; };
+		F5BDE71E2009690100D600EF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BDE71D2009690100D600EF /* ViewController.swift */; };
+		F5BDE7212009690100D600EF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5BDE71F2009690100D600EF /* Main.storyboard */; };
+		F5BDE7232009690100D600EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5BDE7222009690100D600EF /* Assets.xcassets */; };
+		F5BDE7262009690100D600EF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5BDE7242009690100D600EF /* LaunchScreen.storyboard */; };
+		F5BDE72B2009690100D600EF /* XestiMonitorsDemo WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = F5BDE72A2009690100D600EF /* XestiMonitorsDemo WatchKit App.app */; };
+		F5BDE7312009690100D600EF /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5BDE72F2009690100D600EF /* Interface.storyboard */; };
+		F5BDE7332009690100D600EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5BDE7322009690100D600EF /* Assets.xcassets */; };
+		F5BDE73A2009690100D600EF /* XestiMonitorsDemo WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F5BDE7392009690100D600EF /* XestiMonitorsDemo WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F5BDE73F2009690100D600EF /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BDE73E2009690100D600EF /* InterfaceController.swift */; };
+		F5BDE7412009690100D600EF /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BDE7402009690100D600EF /* ExtensionDelegate.swift */; };
+		F5BDE7432009690100D600EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5BDE7422009690100D600EF /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F5BDE72C2009690100D600EF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F5BDE7102009690100D600EF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F5BDE7292009690100D600EF;
+			remoteInfo = "XestiMonitorsDemo WatchKit App";
+		};
+		F5BDE73B2009690100D600EF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F5BDE7102009690100D600EF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F5BDE7382009690100D600EF;
+			remoteInfo = "XestiMonitorsDemo WatchKit Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F5BDE74A2009690100D600EF /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				F5BDE73A2009690100D600EF /* XestiMonitorsDemo WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F5BDE74E2009690100D600EF /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				F5BDE72B2009690100D600EF /* XestiMonitorsDemo WatchKit App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		F5BDE7182009690100D600EF /* XestiMonitorsDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XestiMonitorsDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5BDE71B2009690100D600EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F5BDE71D2009690100D600EF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F5BDE7202009690100D600EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F5BDE7222009690100D600EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F5BDE7252009690100D600EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F5BDE7272009690100D600EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F5BDE72A2009690100D600EF /* XestiMonitorsDemo WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "XestiMonitorsDemo WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5BDE7302009690100D600EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		F5BDE7322009690100D600EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F5BDE7342009690100D600EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F5BDE7392009690100D600EF /* XestiMonitorsDemo WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "XestiMonitorsDemo WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5BDE73E2009690100D600EF /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		F5BDE7402009690100D600EF /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		F5BDE7422009690100D600EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F5BDE7442009690100D600EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F5BDE7152009690100D600EF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F5BDE7362009690100D600EF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F5BDE70F2009690100D600EF = {
+			isa = PBXGroup;
+			children = (
+				F5BDE71A2009690100D600EF /* XestiMonitorsDemo */,
+				F5BDE72E2009690100D600EF /* XestiMonitorsDemo WatchKit App */,
+				F5BDE73D2009690100D600EF /* XestiMonitorsDemo WatchKit Extension */,
+				F5BDE7192009690100D600EF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F5BDE7192009690100D600EF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F5BDE7182009690100D600EF /* XestiMonitorsDemo.app */,
+				F5BDE72A2009690100D600EF /* XestiMonitorsDemo WatchKit App.app */,
+				F5BDE7392009690100D600EF /* XestiMonitorsDemo WatchKit Extension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F5BDE71A2009690100D600EF /* XestiMonitorsDemo */ = {
+			isa = PBXGroup;
+			children = (
+				F5BDE71B2009690100D600EF /* AppDelegate.swift */,
+				F5BDE71D2009690100D600EF /* ViewController.swift */,
+				F5BDE71F2009690100D600EF /* Main.storyboard */,
+				F5BDE7222009690100D600EF /* Assets.xcassets */,
+				F5BDE7242009690100D600EF /* LaunchScreen.storyboard */,
+				F5BDE7272009690100D600EF /* Info.plist */,
+			);
+			path = XestiMonitorsDemo;
+			sourceTree = "<group>";
+		};
+		F5BDE72E2009690100D600EF /* XestiMonitorsDemo WatchKit App */ = {
+			isa = PBXGroup;
+			children = (
+				F5BDE72F2009690100D600EF /* Interface.storyboard */,
+				F5BDE7322009690100D600EF /* Assets.xcassets */,
+				F5BDE7342009690100D600EF /* Info.plist */,
+			);
+			path = "XestiMonitorsDemo WatchKit App";
+			sourceTree = "<group>";
+		};
+		F5BDE73D2009690100D600EF /* XestiMonitorsDemo WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				F5BDE73E2009690100D600EF /* InterfaceController.swift */,
+				F5BDE7402009690100D600EF /* ExtensionDelegate.swift */,
+				F5BDE7422009690100D600EF /* Assets.xcassets */,
+				F5BDE7442009690100D600EF /* Info.plist */,
+			);
+			path = "XestiMonitorsDemo WatchKit Extension";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F5BDE7172009690100D600EF /* XestiMonitorsDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F5BDE74F2009690100D600EF /* Build configuration list for PBXNativeTarget "XestiMonitorsDemo" */;
+			buildPhases = (
+				F5BDE7142009690100D600EF /* Sources */,
+				F5BDE7152009690100D600EF /* Frameworks */,
+				F5BDE7162009690100D600EF /* Resources */,
+				F5BDE74E2009690100D600EF /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F5BDE72D2009690100D600EF /* PBXTargetDependency */,
+			);
+			name = XestiMonitorsDemo;
+			productName = XestiMonitorsDemo;
+			productReference = F5BDE7182009690100D600EF /* XestiMonitorsDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F5BDE7292009690100D600EF /* XestiMonitorsDemo WatchKit App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F5BDE74B2009690100D600EF /* Build configuration list for PBXNativeTarget "XestiMonitorsDemo WatchKit App" */;
+			buildPhases = (
+				F5BDE7282009690100D600EF /* Resources */,
+				F5BDE74A2009690100D600EF /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F5BDE73C2009690100D600EF /* PBXTargetDependency */,
+			);
+			name = "XestiMonitorsDemo WatchKit App";
+			productName = "XestiMonitorsDemo WatchKit App";
+			productReference = F5BDE72A2009690100D600EF /* XestiMonitorsDemo WatchKit App.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		F5BDE7382009690100D600EF /* XestiMonitorsDemo WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F5BDE7472009690100D600EF /* Build configuration list for PBXNativeTarget "XestiMonitorsDemo WatchKit Extension" */;
+			buildPhases = (
+				F5BDE7352009690100D600EF /* Sources */,
+				F5BDE7362009690100D600EF /* Frameworks */,
+				F5BDE7372009690100D600EF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "XestiMonitorsDemo WatchKit Extension";
+			productName = "XestiMonitorsDemo WatchKit Extension";
+			productReference = F5BDE7392009690100D600EF /* XestiMonitorsDemo WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F5BDE7102009690100D600EF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = Xesticode;
+				TargetAttributes = {
+					F5BDE7172009690100D600EF = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					F5BDE7292009690100D600EF = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					F5BDE7382009690100D600EF = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = F5BDE7132009690100D600EF /* Build configuration list for PBXProject "XestiMonitorsDemo" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F5BDE70F2009690100D600EF;
+			productRefGroup = F5BDE7192009690100D600EF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F5BDE7172009690100D600EF /* XestiMonitorsDemo */,
+				F5BDE7292009690100D600EF /* XestiMonitorsDemo WatchKit App */,
+				F5BDE7382009690100D600EF /* XestiMonitorsDemo WatchKit Extension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F5BDE7162009690100D600EF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F5BDE7262009690100D600EF /* LaunchScreen.storyboard in Resources */,
+				F5BDE7232009690100D600EF /* Assets.xcassets in Resources */,
+				F5BDE7212009690100D600EF /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F5BDE7282009690100D600EF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F5BDE7332009690100D600EF /* Assets.xcassets in Resources */,
+				F5BDE7312009690100D600EF /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F5BDE7372009690100D600EF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F5BDE7432009690100D600EF /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F5BDE7142009690100D600EF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F5BDE71E2009690100D600EF /* ViewController.swift in Sources */,
+				F5BDE71C2009690100D600EF /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F5BDE7352009690100D600EF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F5BDE7412009690100D600EF /* ExtensionDelegate.swift in Sources */,
+				F5BDE73F2009690100D600EF /* InterfaceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F5BDE72D2009690100D600EF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F5BDE7292009690100D600EF /* XestiMonitorsDemo WatchKit App */;
+			targetProxy = F5BDE72C2009690100D600EF /* PBXContainerItemProxy */;
+		};
+		F5BDE73C2009690100D600EF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F5BDE7382009690100D600EF /* XestiMonitorsDemo WatchKit Extension */;
+			targetProxy = F5BDE73B2009690100D600EF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F5BDE71F2009690100D600EF /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F5BDE7202009690100D600EF /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F5BDE7242009690100D600EF /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F5BDE7252009690100D600EF /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		F5BDE72F2009690100D600EF /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F5BDE7302009690100D600EF /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F5BDE7452009690100D600EF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F5BDE7462009690100D600EF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F5BDE7482009690100D600EF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "XestiMonitorsDemo WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.xesticode.XestiMonitorsDemo.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.2;
+			};
+			name = Debug;
+		};
+		F5BDE7492009690100D600EF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "XestiMonitorsDemo WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.xesticode.XestiMonitorsDemo.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.2;
+			};
+			name = Release;
+		};
+		F5BDE74C2009690100D600EF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				IBSC_MODULE = XestiMonitorsDemo_WatchKit_Extension;
+				INFOPLIST_FILE = "XestiMonitorsDemo WatchKit App/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.xesticode.XestiMonitorsDemo.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.2;
+			};
+			name = Debug;
+		};
+		F5BDE74D2009690100D600EF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				IBSC_MODULE = XestiMonitorsDemo_WatchKit_Extension;
+				INFOPLIST_FILE = "XestiMonitorsDemo WatchKit App/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.xesticode.XestiMonitorsDemo.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.2;
+			};
+			name = Release;
+		};
+		F5BDE7502009690100D600EF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = XestiMonitorsDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.xesticode.XestiMonitorsDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F5BDE7512009690100D600EF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = XestiMonitorsDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.xesticode.XestiMonitorsDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F5BDE7132009690100D600EF /* Build configuration list for PBXProject "XestiMonitorsDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F5BDE7452009690100D600EF /* Debug */,
+				F5BDE7462009690100D600EF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F5BDE7472009690100D600EF /* Build configuration list for PBXNativeTarget "XestiMonitorsDemo WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F5BDE7482009690100D600EF /* Debug */,
+				F5BDE7492009690100D600EF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F5BDE74B2009690100D600EF /* Build configuration list for PBXNativeTarget "XestiMonitorsDemo WatchKit App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F5BDE74C2009690100D600EF /* Debug */,
+				F5BDE74D2009690100D600EF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F5BDE74F2009690100D600EF /* Build configuration list for PBXNativeTarget "XestiMonitorsDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F5BDE7502009690100D600EF /* Debug */,
+				F5BDE7512009690100D600EF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F5BDE7102009690100D600EF /* Project object */;
+}
