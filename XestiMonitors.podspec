@@ -18,10 +18,10 @@ Pod::Spec.new do |s|
 
   s.requires_arc        = true
 
-  s.ios.frameworks      = 'CoreMotion', 'Foundation', 'SystemConfiguration', 'UIKit'
-  s.osx.frameworks      = 'Foundation', 'SystemConfiguration'
-  s.tvos.frameworks     = 'Foundation', 'SystemConfiguration', 'UIKit'
-  s.watchos.frameworks  = 'CoreMotion', 'Foundation'
+  s.ios.frameworks      = 'CoreLocation', 'CoreMotion', 'Foundation', 'SystemConfiguration', 'UIKit'
+  s.osx.frameworks      = 'CoreLocation', 'Foundation', 'SystemConfiguration'
+  s.tvos.frameworks     = 'CoreLocation', 'Foundation', 'SystemConfiguration', 'UIKit'
+  s.watchos.frameworks  = 'CoreLocation', 'CoreMotion', 'Foundation'
 
   s.default_subspec     = 'Core'
 

@@ -48,7 +48,7 @@
         /// A Boolean value indicating whether proximity monitoring is
         /// available on the device (`true`) or not (`false`).
         ///
-        public lazy var isAvailable: Bool = {
+        public private(set) lazy var isAvailable: Bool = {
             let oldValue = self.device.isProximityMonitoringEnabled
 
             defer { self.device.isProximityMonitoringEnabled = oldValue }

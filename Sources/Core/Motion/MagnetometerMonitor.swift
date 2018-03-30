@@ -96,13 +96,13 @@
         private let motionManager: MotionManagerProtocol
         private let queue: OperationQueue
 
-        override public final func cleanupMonitor() {
+        override public func cleanupMonitor() {
             motionManager.stopMagnetometerUpdates()
 
             super.cleanupMonitor()
         }
 
-        override public final func configureMonitor() {
+        override public func configureMonitor() {
             super.configureMonitor()
 
             motionManager.magnetometerUpdateInterval = interval

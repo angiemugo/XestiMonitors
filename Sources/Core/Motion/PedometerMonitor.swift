@@ -143,13 +143,13 @@
         private let pedometer: PedometerProtocol
         private let queue: OperationQueue
 
-        override public final func cleanupMonitor() {
+        override public func cleanupMonitor() {
             pedometer.stopUpdates()
 
             super.cleanupMonitor()
         }
 
-        override public final func configureMonitor() {
+        override public func configureMonitor() {
             super.configureMonitor()
 
             pedometer.startUpdates(from: Date()) { [unowned self] data, error in

@@ -100,13 +100,13 @@
         private let queue: OperationQueue
         private let referenceFrame: CMAttitudeReferenceFrame
 
-        override public final func cleanupMonitor() {
+        override public func cleanupMonitor() {
             motionManager.stopDeviceMotionUpdates()
 
             super.cleanupMonitor()
         }
 
-        override public final func configureMonitor() {
+        override public func configureMonitor() {
             super.configureMonitor()
 
             motionManager.deviceMotionUpdateInterval = interval
