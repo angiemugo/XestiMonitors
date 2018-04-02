@@ -70,6 +70,7 @@
 
         ///
         /// A Boolean value indicating whether ...
+        /// Returns a Boolean value indicating whether the significant-change location service is available.
         ///
         public var isAvailable: Bool {
             return type(of: locationManager).significantLocationChangeMonitoringAvailable()

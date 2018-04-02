@@ -88,54 +88,59 @@
 
         ///
         /// A Boolean value indicating whether ...
+        /// Returns a Boolean value indicating whether the device supports region monitoring using the specified class.
         ///
         public var isAvailable: Bool {
             return type(of: locationManager).isMonitoringAvailable(for: CLRegion.self)
         }
 
         ///
-        ///
+        /// The largest boundary distance that can be assigned to a region.
         ///
         public var maximumMonitoringDistance: CLLocationDistance {
             return locationManager.maximumRegionMonitoringDistance
         }
 
         ///
-        ///
+        /// The set of shared regions monitored by all location manager objects.
         ///
         public var monitoredRegions: Set<CLRegion> {
             return locationManager.monitoredRegions
         }
 
         ///
-        ///
+        /// Regions possibly being monitored ???
         ///
         public private(set) var regions: Set<CLRegion>
 
         ///
-        ///
+        /// Starts monitoring the specified region.
         ///
         public func insertRegion(_ region: CLRegion) {
             guard
                 regions.insert(region).inserted
                 else { return }
 
+            // only if monitoring has been started ...
+
             locationManager.startMonitoring(for: region)
         }
 
         ///
-        ///
+        /// Stops monitoring the specified region.
         ///
         public func removeRegion(_ region: CLRegion) {
             guard
                 regions.remove(region) != nil
                 else { return }
 
+            // only if monitoring has been stopped ???
+
             locationManager.stopMonitoring(for: region)
         }
 
         ///
-        ///
+        /// Retrieves the state of a region asynchronously.
         ///
         public func requestState(for region: CLRegion) {
             locationManager.requestState(for: region)

@@ -12,7 +12,7 @@
     import CoreLocation
 
     ///
-    /// An `VisitMonitor` instance monitors the app for visit-related events.
+    /// An `VisitMonitor` instance monitors the app for visit-related events. ???
     ///
     public class VisitMonitor: BaseMonitor {
         ///
