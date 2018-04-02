@@ -100,6 +100,8 @@
             return locationManager.monitoredRegions
         }
 
+        //    var maximumRegionMonitoringDistance: CLLocationDistance { get }
+
         ///
         ///
         ///

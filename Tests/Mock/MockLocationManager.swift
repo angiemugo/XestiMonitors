@@ -13,33 +13,9 @@ import CoreLocation
 // swiftlint:disable type_body_length
 
 internal class MockLocationManager: LocationManagerProtocol {
-    init() {
-        self.mockAlwaysAuthorizationRequested = false
-        self.mockHeadingRunning = false
-        self.mockLocationRequested = false
-        self.mockRegionStateRequested = nil
-        self.mockSignificantLocationRunning = false
-        self.mockStandardLocationRunning = false
-        self.mockVisitRunning = false
-        self.mockWhenInUseAuthorizationRequested = false
-
-        #if os(iOS) || os(macOS)
-            self.monitoredRegions = []
-        #endif
-        #if os(iOS)
-            self.rangedRegions = []
-        #endif
+    static func deferredLocationUpdatesAvailable() -> Bool {
+        return false
     }
-
-    weak var delegate: CLLocationManagerDelegate?
-
-    #if os(iOS) || os(macOS)
-    private(set) var monitoredRegions: Set<CLRegion>
-    #endif
-
-    #if os(iOS)
-    private(set) var rangedRegions: Set<CLRegion>
-    #endif
 
     #if os(iOS) || os(macOS)
     static func headingAvailable() -> Bool {
@@ -74,6 +50,116 @@ internal class MockLocationManager: LocationManagerProtocol {
     #if os(iOS) || os(macOS)
     static func significantLocationChangeMonitoringAvailable() -> Bool {
         return mockSignificantLocationAvailable
+    }
+    #endif
+
+    init() {
+        #if os(iOS) || os(watchOS)
+            self.activityType = .other
+        #endif
+        #if os(iOS) || os(watchOS)
+            self.allowsBackgroundLocationUpdates = false
+        #endif
+        self.desiredAccuracy = kCLLocationAccuracyBest
+        self.distanceFilter = kCLDistanceFilterNone
+        #if os(iOS)
+            self.heading = nil
+        #endif
+        #if os(iOS)
+            self.headingFilter = 1
+        #endif
+        #if os(iOS)
+            self.headingOrientation = .portrait
+        #endif
+        self.location = nil
+        #if os(iOS) || os(macOS)
+            self.maximumRegionMonitoringDistance = 1_000
+        #endif
+        self.mockAlwaysAuthorizationRequested = false
+        self.mockHeadingRunning = false
+        self.mockLocationRequested = false
+        self.mockRegionStateRequested = nil
+        self.mockSignificantLocationRunning = false
+        self.mockStandardLocationRunning = false
+        self.mockVisitRunning = false
+        self.mockWhenInUseAuthorizationRequested = false
+        #if os(iOS) || os(macOS)
+            self.monitoredRegions = []
+        #endif
+        #if os(iOS)
+            self.pausesLocationUpdatesAutomatically = false
+        #endif
+        #if os(iOS)
+            self.rangedRegions = []
+        #endif
+        #if os(iOS)
+            self.showsBackgroundLocationIndicator = false
+        #endif
+    }
+
+    #if os(iOS) || os(watchOS)
+    @available(watchOS 4.0, *)
+    var activityType: CLActivityType
+    #endif
+
+    #if os(iOS) || os(watchOS)
+    @available(watchOS 4.0, *)
+    var allowsBackgroundLocationUpdates: Bool
+    #endif
+
+    weak var delegate: CLLocationManagerDelegate?
+
+    var desiredAccuracy: CLLocationAccuracy
+
+    var distanceFilter: CLLocationDistance
+
+    #if os(iOS)
+    var heading: CLHeading?
+    #endif
+
+    #if os(iOS)
+    var headingFilter: CLLocationDegrees
+    #endif
+
+    #if os(iOS)
+    var headingOrientation: CLDeviceOrientation
+    #endif
+
+    var location: CLLocation?
+
+    #if os(iOS) || os(macOS)
+    var maximumRegionMonitoringDistance: CLLocationDistance
+    #endif
+
+    #if os(iOS) || os(macOS)
+    private(set) var monitoredRegions: Set<CLRegion>
+    #endif
+
+    #if os(iOS)
+    var pausesLocationUpdatesAutomatically: Bool
+    #endif
+
+    #if os(iOS)
+    private(set) var rangedRegions: Set<CLRegion>
+    #endif
+
+    #if os(iOS)
+    var showsBackgroundLocationIndicator: Bool
+    #endif
+
+    #if os(iOS)
+    func allowDeferredLocationUpdates(untilTraveled distance: CLLocationDistance,
+                                      timeout: TimeInterval) {
+    }
+    #endif
+
+    #if os(iOS)
+    func disallowDeferredLocationUpdates() {
+    }
+    #endif
+
+    #if os(iOS)
+    func dismissHeadingCalibrationDisplay() {
     }
     #endif
 
@@ -173,6 +259,7 @@ internal class MockLocationManager: LocationManagerProtocol {
     }
 
     private static var mockAuthorizationStatus = CLAuthorizationStatus.notDetermined
+    private static var mockDeferredLocationUpdatesAvailable = false
     private static var mockBeaconRangingAvailable = false
     private static var mockHeadingAvailable = false
     private static var mockLocationServicesEnabled = false

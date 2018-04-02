@@ -67,12 +67,20 @@
             self.locationManager.delegate = self.adapter
         }
 
+        //    var heading: CLHeading? { get }
+
+        //    var headingFilter: CLLocationDegrees
+
+        //    var headingOrientation: CLDeviceOrientation
+
         ///
         /// A Boolean value indicating whether ...
         ///
         public var isAvailable: Bool {
             return type(of: locationManager).headingAvailable()
         }
+
+        //    func dismissHeadingCalibrationDisplay()
 
         private let adapter: LocationManagerDelegateAdapter
         private let handler: (Event) -> Void

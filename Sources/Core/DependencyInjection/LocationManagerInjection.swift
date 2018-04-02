@@ -10,41 +10,62 @@
 import CoreLocation
 
 internal protocol LocationManagerProtocol: class {
+    #if os(iOS) || os(watchOS)
+    @available(watchOS 4.0, *)
+    var activityType: CLActivityType { get set }
+    #endif
+
+    #if os(iOS) || os(watchOS)
+    @available(watchOS 4.0, *)
+    var allowsBackgroundLocationUpdates: Bool { get set }
+    #endif
+
     var delegate: CLLocationManagerDelegate? { get set }
 
-//    var activityType: CLActivityType
+    var desiredAccuracy: CLLocationAccuracy { get set }
 
-//    var allowsBackgroundLocationUpdates: Bool
+    var distanceFilter: CLLocationDistance { get set }
 
-//    var desiredAccuracy: CLLocationAccuracy
+    #if os(iOS)
+    var heading: CLHeading? { get }
+    #endif
 
-//    var distanceFilter: CLLocationDistance
+    #if os(iOS)
+    var headingFilter: CLLocationDegrees { get set }
+    #endif
 
-//    var heading: CLHeading? { get }
+    #if os(iOS)
+    var headingOrientation: CLDeviceOrientation { get set }
+    #endif
 
-//    var headingFilter: CLLocationDegrees
+    var location: CLLocation? { get }
 
-//    var headingOrientation: CLDeviceOrientation
-
-//    var location: CLLocation? { get }
-
-//    var maximumRegionMonitoringDistance: CLLocationDistance { get }
+    #if os(iOS) || os(macOS)
+    var maximumRegionMonitoringDistance: CLLocationDistance { get }
+    #endif
 
     #if os(iOS) || os(macOS)
     var monitoredRegions: Set<CLRegion> { get }
     #endif
 
-//    var pausesLocationUpdatesAutomatically: Bool
+    #if os(iOS)
+    var pausesLocationUpdatesAutomatically: Bool { get set }
+    #endif
 
     #if os(iOS)
     var rangedRegions: Set<CLRegion> { get }
     #endif
 
-//    var showsBackgroundLocationIndicator: Bool
+    #if os(iOS)
+    @available(iOS 11.0, *)
+    var showsBackgroundLocationIndicator: Bool { get set }
+    #endif
 
     static func authorizationStatus() -> CLAuthorizationStatus
 
-//    static func deferredLocationUpdatesAvailable() -> Bool
+    #if os(iOS) || os(macOS)
+    static func deferredLocationUpdatesAvailable() -> Bool
+    #endif
 
     #if os(iOS) || os(macOS)
     static func headingAvailable() -> Bool
@@ -64,12 +85,18 @@ internal protocol LocationManagerProtocol: class {
     static func significantLocationChangeMonitoringAvailable() -> Bool
     #endif
 
-//    func allowDeferredLocationUpdates(untilTraveled distance: CLLocationDistance,
-//                                      timeout: TimeInterval)
+    #if os(iOS)
+    func allowDeferredLocationUpdates(untilTraveled distance: CLLocationDistance,
+                                      timeout: TimeInterval)
+    #endif
 
-//    func disallowDeferredLocationUpdates()
+    #if os(iOS)
+    func disallowDeferredLocationUpdates()
+    #endif
 
-//    func dismissHeadingCalibrationDisplay()
+    #if os(iOS)
+    func dismissHeadingCalibrationDisplay()
+    #endif
 
     #if os(iOS) || os(watchOS)
     func requestAlwaysAuthorization()

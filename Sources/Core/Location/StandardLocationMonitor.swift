@@ -67,6 +67,27 @@ public class StandardLocationMonitor: BaseMonitor {
         self.locationManager.delegate = self.adapter
     }
 
+    //    var activityType: CLActivityType
+
+    //    var allowsBackgroundLocationUpdates: Bool
+
+    //    var desiredAccuracy: CLLocationAccuracy
+
+    //    var distanceFilter: CLLocationDistance
+
+    //    var location: CLLocation? { get }
+
+    //    var pausesLocationUpdatesAutomatically: Bool
+
+    //    var showsBackgroundLocationIndicator: Bool
+
+    //    static func deferredLocationUpdatesAvailable() -> Bool
+
+    //    func allowDeferredLocationUpdates(untilTraveled distance: CLLocationDistance,
+    //                                      timeout: TimeInterval)
+
+    //    func disallowDeferredLocationUpdates()
+
     #if os(iOS) || os(tvOS) || os(watchOS)
 
     ///
