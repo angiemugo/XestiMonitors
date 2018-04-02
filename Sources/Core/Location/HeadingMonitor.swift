@@ -67,11 +67,20 @@
             self.locationManager.delegate = self.adapter
         }
 
-        //    var heading: CLHeading? { get }
+        ///
+        ///
+        ///
+        public var filter: CLLocationDegrees {
+            get { return locationManager.headingFilter }
+            set { locationManager.headingFilter = newValue }
+        }
 
-        //    var headingFilter: CLLocationDegrees
-
-        //    var headingOrientation: CLDeviceOrientation
+        ///
+        ///
+        ///
+        public var heading: CLHeading? {
+            return locationManager.heading
+        }
 
         ///
         /// A Boolean value indicating whether ...
@@ -80,7 +89,20 @@
             return type(of: locationManager).headingAvailable()
         }
 
-        //    func dismissHeadingCalibrationDisplay()
+        ///
+        ///
+        ///
+        public var orientation: CLDeviceOrientation {
+            get { return locationManager.headingOrientation }
+            set { locationManager.headingOrientation = newValue }
+        }
+
+        ///
+        ///
+        ///
+        public func dismissCalibrationDisplay() {
+            locationManager.dismissHeadingCalibrationDisplay()
+        }
 
         private let adapter: LocationManagerDelegateAdapter
         private let handler: (Event) -> Void

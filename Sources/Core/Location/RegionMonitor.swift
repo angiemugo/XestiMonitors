@@ -96,11 +96,16 @@
         ///
         ///
         ///
+        public var maximumMonitoringDistance: CLLocationDistance {
+            return locationManager.maximumRegionMonitoringDistance
+        }
+
+        ///
+        ///
+        ///
         public var monitoredRegions: Set<CLRegion> {
             return locationManager.monitoredRegions
         }
-
-        //    var maximumRegionMonitoringDistance: CLLocationDistance { get }
 
         ///
         ///
