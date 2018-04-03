@@ -13,15 +13,15 @@ import CoreLocation
 
 ///
 /// A `BeaconRangingMonitor` instance monitors the range (_i.e._, the relative
-/// proximity) of all Bluetooth low-energy beacons inside one or more regions.
+/// proximity) to Bluetooth low-energy beacons inside one or more regions.
 ///
 public class BeaconRangingMonitor: BaseMonitor {
     ///
-    /// Encapsulates changes to the range of beacons inside a region.
+    /// Encapsulates changes to the beacon ranges inside a region.
     ///
     public enum Event {
         ///
-        /// A beacon range has been updated.
+        /// One or more beacon ranges have been updated.
         ///
         case didUpdate(Info)
     }
@@ -32,7 +32,7 @@ public class BeaconRangingMonitor: BaseMonitor {
     ///
     public enum Info {
         ///
-        /// The beacon ranges.
+        /// The current beacon ranges.
         ///
         case beacons([CLBeacon], CLBeaconRegion)
 
@@ -51,7 +51,8 @@ public class BeaconRangingMonitor: BaseMonitor {
     ///                 changes. This set can be subsequently modified with the
     ///                 `insertRegion(_:)` and `removeRegion(_:)` methods.
     ///   - queue:      The operation queue on which the handler executes.
-    ///   - handler:    The handler to call when ...
+    ///   - handler:    The handler to call when a beacon range change is
+    ///                 detected.
     ///
     public init(regions: Set<CLBeaconRegion> = [],
                 queue: OperationQueue,

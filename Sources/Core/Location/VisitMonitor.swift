@@ -12,28 +12,20 @@
 import CoreLocation
 
 ///
-/// A `VisitMonitor` instance monitors the device for updates to its location
-/// during a specific period of time. ???
-///
-/// A CLVisit object encapsulates information about places that the user has been.
-/// The visit includes the location where the visit occurred and information about
-/// the arrival and departure times as relevant.
-///
-/// The visits service is the most power-efficient way of gathering location data.
-/// With this service, the system delivers location updates only when the user’s
-/// movements are noteworthy. Each update includes both the location and the amount
-/// of time spent at that location.
+/// A `VisitMonitor` instance monitors for locations that the user stops at for
+/// a “noteworthy” amount of time. This is considered to be a _visit_.
 ///
 /// - Note:
 ///   An authorization status of `authorizedAlways` is required.
 ///
 public class VisitMonitor: BaseMonitor {
     ///
-    /// Encapsulates updates to the device’s visit. ???
+    /// Encapsulates changes to the device’s current location that constitute
+    /// a visit.
     ///
     public enum Event {
         ///
-        /// The visit has been updated.
+        /// A visit has been determined or updated.
         ///
         case didUpdate(Info)
     }
@@ -43,7 +35,7 @@ public class VisitMonitor: BaseMonitor {
     ///
     public enum Info {
         ///
-        /// The error encountered in attempting to obtain the visit. ???
+        /// The error encountered in attempting to determine or update a visit.
         ///
         case error(Error)
 
@@ -58,8 +50,8 @@ public class VisitMonitor: BaseMonitor {
     ///
     /// - Parameters:
     ///   - queue:      The operation queue on which the handler executes.
-    ///   - handler:    The handler to call when the visit of the device is
-    ///                 updated. ???
+    ///   - handler:    The handler to call when a visit is determined or
+    ///                 updated.
     ///
     public init(queue: OperationQueue,
                 handler: @escaping (Event) -> Void) {

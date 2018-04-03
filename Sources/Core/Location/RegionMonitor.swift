@@ -54,7 +54,7 @@ public class RegionMonitor: BaseMonitor {
     ///                 changes. This set can be subsequently modified with the
     ///                 `insertRegion(_:)` and `removeRegion(_:)` methods.
     ///   - queue:      The operation queue on which the handler executes.
-    ///   - handler:    The handler to call when a boundary transition is
+    ///   - handler:    The handler to call when a region state change is
     ///                 detected.
     ///
     public init(regions: Set<CLRegion> = [],
