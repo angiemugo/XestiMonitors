@@ -77,7 +77,7 @@
 
         ///
         /// A Boolean value indicating whether ...
-        /// Returns a Boolean value indicating whether the device supports ranging of Bluetooth beacons.
+        /// Returns a Boolean value indicating whether the device supports ranging of Bluetooth beacons. ???
         ///
         public var isAvailable: Bool {
             return type(of: locationManager).isRangingAvailable()
@@ -87,16 +87,20 @@
         /// The set of regions currently being tracked using ranging.
         ///
         public var rangedRegions: Set<CLBeaconRegion> {
+            #if swift(>=4.1)
+            return Set(locationManager.rangedRegions.compactMap { $0 as? CLBeaconRegion })
+            #else
             return Set(locationManager.rangedRegions.flatMap { $0 as? CLBeaconRegion })
+            #endif
         }
 
         //
-        // The set of possible beacon region being range monitored.
+        // The set of possible beacon region being range monitored. ???
         //
         public private(set) var regions: Set<CLBeaconRegion>
 
         ///
-        /// Starts the delivery of notifications for the specified beacon region.
+        /// Starts the delivery of notifications for the specified beacon region. ???
         ///
         public func insertRegion(_ region: CLBeaconRegion) {
             guard
@@ -107,7 +111,7 @@
         }
 
         ///
-        /// Stops the delivery of notifications for the specified beacon region.
+        /// Stops the delivery of notifications for the specified beacon region. ???
         ///
         public func removeRegion(_ region: CLBeaconRegion) {
             guard
