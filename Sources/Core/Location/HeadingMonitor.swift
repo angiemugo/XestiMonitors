@@ -12,15 +12,16 @@
 import CoreLocation
 
 ///
-/// A `HeadingMonitor` instance monitors the device for updates to its heading.
+/// A `HeadingMonitor` instance monitors the device for changes to its current
+/// heading.
 ///
 public class HeadingMonitor: BaseMonitor {
     ///
-    /// Encapsulates updates to the device’s heading.
+    /// Encapsulates changes to the device’s current heading.
     ///
     public enum Event {
         ///
-        /// The heading has been updated.
+        /// The current heading has been updated.
         ///
         case didUpdate(Info)
     }
@@ -30,12 +31,12 @@ public class HeadingMonitor: BaseMonitor {
     ///
     public enum Info {
         ///
-        /// The error encountered in attempting to obtain the heading.
+        /// The error encountered in attempting to obtain the current heading.
         ///
         case error(Error)
 
         ///
-        /// The updated heading.
+        /// The latest heading data.
         ///
         case heading(CLHeading)
     }
@@ -45,8 +46,8 @@ public class HeadingMonitor: BaseMonitor {
     ///
     /// - Parameters:
     ///   - queue:      The operation queue on which the handler executes.
-    ///   - handler:    The handler to call when the heading of the device is
-    ///                 updated.
+    ///   - handler:    The handler to call when the current heading of the
+    ///                 device changes.
     ///
     public init(queue: OperationQueue,
                 handler: @escaping (Event) -> Void) {

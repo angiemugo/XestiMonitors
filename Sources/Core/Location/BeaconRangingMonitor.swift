@@ -12,18 +12,16 @@
 import CoreLocation
 
 ///
-/// A `BeaconRangingMonitor` instance monitors ...
-/// While a beacon is in range of an iOS device, apps can also monitor for the relative distance to the beacon. You can use these capabilities to develop many types of innovative location-based apps.
-/// While a user’s device is inside a registered beacon region, apps can use the startRangingBeaconsInRegion: method of the CLLocationManager class to determine the relative proximity of one or more beacons in the region and to be notified when that distance changes.
-/// Reporting the range to nearby beacons.
+/// A `BeaconRangingMonitor` instance monitors the range (_i.e._, the relative
+/// proximity) of all Bluetooth low-energy beacons inside one or more regions.
 ///
 public class BeaconRangingMonitor: BaseMonitor {
     ///
-    /// Encapsulates changes to ...
+    /// Encapsulates changes to the range of beacons inside a region.
     ///
     public enum Event {
         ///
-        /// ...  has been updated.
+        /// A beacon range has been updated.
         ///
         case didUpdate(Info)
     }
@@ -34,12 +32,13 @@ public class BeaconRangingMonitor: BaseMonitor {
     ///
     public enum Info {
         ///
-        ///
+        /// The beacon ranges.
         ///
         case beacons([CLBeacon], CLBeaconRegion)
 
         ///
-        /// The error encountered in attempting to ...
+        /// The error encountered in attempting to determine the beacon ranges
+        /// inside a region.
         ///
         case error(Error, CLBeaconRegion?)
     }
@@ -48,7 +47,9 @@ public class BeaconRangingMonitor: BaseMonitor {
     /// Initializes a new `BeaconRangingMonitor`.
     ///
     /// - Parameters:
-    ///   - regions:
+    ///   - regions:    The initial set of beacon regions to monitor for range
+    ///                 changes. This set can be subsequently modified with the
+    ///                 `insertRegion(_:)` and `removeRegion(_:)` methods.
     ///   - queue:      The operation queue on which the handler executes.
     ///   - handler:    The handler to call when ...
     ///
@@ -87,23 +88,37 @@ public class BeaconRangingMonitor: BaseMonitor {
     }
 
     ///
-    /// The set of beacon regions currently being tracked using ranging.
+    /// The set of beacon regions actively being tracked using ranging. There
+    /// is a system-imposed, per-app limit to how many regions can be actively
+    /// ranged. Therefore, `rangedRegions` _may_ be less than `regions.count`.
     ///
     public var rangedRegions: Set<CLBeaconRegion> {
+        guard
+            isMonitoring
+            else { return [] }
+
         #if swift(>=4.1)
-        return Set(locationManager.rangedRegions.compactMap { $0 as? CLBeaconRegion })
+        let tmpRegions = Set(locationManager.rangedRegions.compactMap { $0 as? CLBeaconRegion })
         #else
-        return Set(locationManager.rangedRegions.flatMap { $0 as? CLBeaconRegion })
+        let tmpRegions = Set(locationManager.rangedRegions.flatMap { $0 as? CLBeaconRegion })
         #endif
+
+        return tmpRegions.intersection(regions)
     }
 
     //
-    // ??? The set of possible beacon regions being range monitored. ???
+    // The set of beacon regions _possibly_ being tracked using ranging.
     //
     public private(set) var regions: Set<CLBeaconRegion>
 
     ///
-    /// ??? Starts the delivery of notifications for the specified beacon region. ???
+    /// Inserts the given beacon region into `regions` if it is not already
+    /// present. If monitoring is active _and_ the system allows it, ranging of
+    /// the given beacon region will be started.
+    ///
+    /// - Parameters:
+    ///   - region: The beacon region to insert into the set and possibly start
+    ///             ranging.
     ///
     public func insertRegion(_ region: CLBeaconRegion) {
         if regions.insert(region).inserted,
@@ -113,16 +128,18 @@ public class BeaconRangingMonitor: BaseMonitor {
     }
 
     ///
-    /// ??? Stops the delivery of notifications for the specified beacon region. ???
+    /// Removes the given beacon region from `regions` if it is present.
+    /// If monitoring is active, ranging of the given beacon region will be
+    /// stopped.
+    ///
+    /// - Parameters:
+    ///   - region: The beacon region to remove from the set and stop ranging.
     ///
     public func removeRegion(_ region: CLBeaconRegion) {
-        guard
-            regions.remove(region) != nil
-            else { return }
-
-        // only if monitoring has been stopped ???
-
-        locationManager.stopRangingBeacons(in: region)
+        if regions.remove(region) != nil,
+            isMonitoring {
+            locationManager.stopRangingBeacons(in: region)
+        }
     }
 
     private let adapter: LocationManagerDelegateAdapter

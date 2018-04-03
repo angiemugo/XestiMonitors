@@ -12,25 +12,19 @@
 import CoreLocation
 
 ///
-/// A `SignificantLocationMonitor` instance monitors ...
-/// This framework provides several services that you can use to get and monitor the device’s current location.
-/// The significant-change location service provides a way to get the current location and be notified when significant changes occur, but it’s critical to use it correctly to avoid using too much power.
-/// Two services can give you the user’s current location:
-///
-/// The standard location service is a configurable, general-purpose solution for getting location data and tracking location changes for the specified level of accuracy.
-/// The significant-change location service delivers updates only when there has been a significant change in the device’s location, such as 500 meters or more.
+/// A `SignificantLocationMonitor` instance monitors the device for
+/// _significant_ changes to its current location.
 ///
 /// - Note:
-///   Significant-change location updates require an authorization status of
-///   `authorizedAlways`.
+///   An authorization status of `authorizedAlways` is required.
 ///
 public class SignificantLocationMonitor: BaseMonitor {
     ///
-    /// Encapsulates changes to ...
+    /// Encapsulates changes to the device’s current location.
     ///
     public enum Event {
         ///
-        ///
+        /// The current location has been updated.
         ///
         case didUpdate(Info)
     }
@@ -41,12 +35,14 @@ public class SignificantLocationMonitor: BaseMonitor {
     ///
     public enum Info {
         ///
-        ///
+        /// The error encountered in attempting to obtain the current location.
         ///
         case error(Error)
 
         ///
-        ///
+        /// The latest location data. This array always contains at least one
+        /// object representing the current location. The most recent location
+        /// update is at the end of the array.
         ///
         case locations([CLLocation])
     }
@@ -56,7 +52,8 @@ public class SignificantLocationMonitor: BaseMonitor {
     ///
     /// - Parameters:
     ///   - queue:      The operation queue on which the handler executes.
-    ///   - handler:    The handler to call when ...
+    ///   - handler:    The handler to call when the current location of the
+    ///                 device changes significantly.
     ///
     public init(queue: OperationQueue,
                 handler: @escaping (Event) -> Void) {

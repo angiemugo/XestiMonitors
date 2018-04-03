@@ -13,7 +13,7 @@ import CoreLocation
 
 ///
 /// A `VisitMonitor` instance monitors the device for updates to its location
-/// during a specific period of time.
+/// during a specific period of time. ???
 ///
 /// A CLVisit object encapsulates information about places that the user has been.
 /// The visit includes the location where the visit occurred and information about
@@ -25,11 +25,11 @@ import CoreLocation
 /// of time spent at that location.
 ///
 /// - Note:
-///   Visit updates require an authorization status of `authorizedAlways`.
+///   An authorization status of `authorizedAlways` is required.
 ///
 public class VisitMonitor: BaseMonitor {
     ///
-    /// Encapsulates updates to the device’s visit.
+    /// Encapsulates updates to the device’s visit. ???
     ///
     public enum Event {
         ///
@@ -43,12 +43,12 @@ public class VisitMonitor: BaseMonitor {
     ///
     public enum Info {
         ///
-        /// The error encountered in attempting to obtain the visit.
+        /// The error encountered in attempting to obtain the visit. ???
         ///
         case error(Error)
 
         ///
-        /// The updated visit.
+        /// The latest visit data.
         ///
         case visit(CLVisit)
     }
@@ -59,7 +59,7 @@ public class VisitMonitor: BaseMonitor {
     /// - Parameters:
     ///   - queue:      The operation queue on which the handler executes.
     ///   - handler:    The handler to call when the visit of the device is
-    ///                 updated.
+    ///                 updated. ???
     ///
     public init(queue: OperationQueue,
                 handler: @escaping (Event) -> Void) {

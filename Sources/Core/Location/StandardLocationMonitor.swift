@@ -10,18 +10,17 @@
 import CoreLocation
 
 ///
-/// A `StandardLocationMonitor` instance monitors ...
-/// This framework provides several services that you can use to get and monitor the device’s current location.
-/// The standard location service offers a highly configurable way to get the current location and track changes.
+/// A `StandardLocationMonitor` instance monitors the device for changes to its
+/// current location.
 ///
 @available(watchOS 3.0, *)
 public class StandardLocationMonitor: BaseMonitor {
     ///
-    /// Encapsulates changes to ...
+    /// Encapsulates changes to the device’s current location.
     ///
     public enum Event {
         ///
-        ///
+        /// The current location has been updated.
         ///
         case didUpdate(Info)
     }
@@ -32,12 +31,14 @@ public class StandardLocationMonitor: BaseMonitor {
     ///
     public enum Info {
         ///
-        ///
+        /// The error encountered in attempting to obtain the current location.
         ///
         case error(Error)
 
         ///
-        ///
+        /// The latest location data. This array always contains at least one
+        /// object representing the current location. The most recent location
+        /// update is at the end of the array.
         ///
         case locations([CLLocation])
     }
@@ -47,7 +48,8 @@ public class StandardLocationMonitor: BaseMonitor {
     ///
     /// - Parameters:
     ///   - queue:      The operation queue on which the handler executes.
-    ///   - handler:    The handler to call when ...
+    ///   - handler:    The handler to call when the current location of the
+    ///                 device changes.
     ///
     public init(queue: OperationQueue,
                 handler: @escaping (Event) -> Void) {

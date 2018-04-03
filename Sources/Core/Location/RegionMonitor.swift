@@ -12,23 +12,21 @@
 import CoreLocation
 
 ///
-/// A `RegionMonitor` instance monitors ...
-/// Region monitoring lets you monitor boundary crossings for defined geographical regions and Bluetooth low-energy beacon regions. (Beacon region monitoring is available in iOS only.)
-/// The Core Location framework provides two ways to detect a user’s entry and exit into specific regions: geographical region monitoring (iOS 4.0 and later and OS X v10.8 and later) and beacon region monitoring (iOS 7.0 and later). A geographical region is an area defined by a circle of a specified radius around a known point on the Earth’s surface. In contrast, a beacon region is an area defined by the device’s proximity to Bluetooth low-energy beacons.
-/// Monitoring distinct regions of interest and generating location events when the user enters or leaves those regions.
-///
-/// Be judicious when specifying the set of regions to monitor. Regions are a shared system resource, and the total number of regions available systemwide is limited. For this reason, Core Location limits to 20 the number of regions that may be simultaneously monitored by a single app. To work around this limit, consider registering only those regions in the user’s immediate vicinity. As the user’s location changes, you can remove regions that are now farther way and add regions coming up on the user’s path. If you attempt to register a region and space is unavailable, the location manager calls the locationManager:monitoringDidFailForRegion:withError: method of its delegate with the kCLErrorRegionMonitoringFailure error code.
+/// A `RegionMonitor` instance monitors one or more distinct regions of
+/// interest for state changes (which indicate boundary transitions). A region
+/// can be either a geographical region or a Bluetooth low-energy beacon
+/// region.
 ///
 /// - Note:
-///   Region updates require an authorization status of `authorizedAlways`.
+///   An authorization status of `authorizedAlways` is required.
 ///
 public class RegionMonitor: BaseMonitor {
     ///
-    /// Encapsulates changes to ...
+    /// Encapsulates changes to the state of a region.
     ///
     public enum Event {
         ///
-        ///
+        /// A region state has been updated.
         ///
         case didUpdate(Info)
     }
@@ -38,12 +36,12 @@ public class RegionMonitor: BaseMonitor {
     ///
     public enum Info {
         ///
-        ///
+        /// The error encountered in attempting to determine a region state.
         ///
         case error(Error, CLRegion?)
 
         ///
-        ///
+        /// The region state.
         ///
         case regionState(CLRegionState, CLRegion)
     }
@@ -52,9 +50,12 @@ public class RegionMonitor: BaseMonitor {
     /// Initializes a new `RegionMonitor`.
     ///
     /// - Parameters:
-    ///   - regions:
+    ///   - regions:    The initial set of regions to monitor for state
+    ///                 changes. This set can be subsequently modified with the
+    ///                 `insertRegion(_:)` and `removeRegion(_:)` methods.
     ///   - queue:      The operation queue on which the handler executes.
-    ///   - handler:    The handler to call when ...
+    ///   - handler:    The handler to call when a boundary transition is
+    ///                 detected.
     ///
     public init(regions: Set<CLRegion> = [],
                 queue: OperationQueue,
@@ -110,19 +111,31 @@ public class RegionMonitor: BaseMonitor {
     }
 
     ///
-    /// The set of regions currently being monitored.
+    /// The set of regions actively being monitored. There is a system-imposed,
+    /// per-app limit to how many regions can be actively monitored. Therefore,
+    /// `monitoredRegions.count` _may_ be less than `regions.count`.
     ///
     public var monitoredRegions: Set<CLRegion> {
-        return locationManager.monitoredRegions
+        guard
+            isMonitoring
+            else { return [] }
+
+        return locationManager.monitoredRegions.intersection(regions)
     }
 
     ///
-    /// ??? Regions possibly being monitored ???
+    /// The set of regions _possibly_ being monitored.
     ///
     public private(set) var regions: Set<CLRegion>
 
     ///
-    /// ??? Starts monitoring the specified region. ???
+    /// Inserts the given region into `regions` if it is not already present.
+    /// If monitoring is active _and_ the system allows it, monitoring of the
+    /// given region will be started.
+    ///
+    /// - Parameters:
+    ///   - region: The region to insert into the set and possibly start
+    ///             monitoring.
     ///
     public func insertRegion(_ region: CLRegion) {
         if regions.insert(region).inserted,
@@ -132,16 +145,17 @@ public class RegionMonitor: BaseMonitor {
     }
 
     ///
-    /// ??? Stops monitoring the specified region. ???
+    /// Removes the given region from `regions` if it is present. If monitoring
+    /// is active, monitoring of the given region will be stopped.
+    ///
+    /// - Parameters:
+    ///   - region: The region to remove from the set and stop monitoring.
     ///
     public func removeRegion(_ region: CLRegion) {
-        guard
-            regions.remove(region) != nil
-            else { return }
-
-        // only if monitoring has been stopped ???
-
-        locationManager.stopMonitoring(for: region)
+        if regions.remove(region) != nil,
+            isMonitoring {
+            locationManager.stopMonitoring(for: region)
+        }
     }
 
     ///
