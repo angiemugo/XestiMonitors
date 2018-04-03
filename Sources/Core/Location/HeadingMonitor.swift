@@ -9,133 +9,134 @@
 
 #if os(iOS)
 
-    import CoreLocation
+import CoreLocation
 
+///
+/// A `HeadingMonitor` instance monitors the device for updates to its heading.
+///
+public class HeadingMonitor: BaseMonitor {
     ///
-    /// An `HeadingMonitor` instance monitors ...
+    /// Encapsulates updates to the device’s heading.
     ///
-    public class HeadingMonitor: BaseMonitor {
+    public enum Event {
         ///
-        /// Encapsulates changes to ...
+        /// The heading has been updated.
         ///
-        public enum Event {
-            ///
-            ///
-            ///
-            case didUpdate(Info)
-        }
-
-        ///
-        /// Encapsulates information associated with a heading monitor event.
-        ///
-        public enum Info {
-            ///
-            ///
-            ///
-            case error(Error)
-
-            ///
-            ///
-            ///
-            case heading(CLHeading)
-        }
-
-        ///
-        /// Initializes a new `HeadingMonitor`.
-        ///
-        /// - Parameters:
-        ///   - queue:      The operation queue on which the handler executes.
-        ///   - handler:    The handler to call when ...
-        ///
-        public init(queue: OperationQueue,
-                    handler: @escaping (Event) -> Void) {
-            self.adapter = .init()
-            self.handler = handler
-            self.locationManager = LocationManagerInjector.inject()
-            self.queue = queue
-            self.shouldDisplayCalibration = false
-
-            super.init()
-
-            self.adapter.didFail = { [unowned self] in
-                self.handler(.didUpdate(.error($0)))
-            }
-
-            self.adapter.didUpdateHeading = { [unowned self] in
-                self.handler(.didUpdate(.heading($0)))
-            }
-
-            self.adapter.shouldDisplayHeadingCalibration = { [unowned self] in
-                return self.shouldDisplayCalibration
-            }
-
-            self.locationManager.delegate = self.adapter
-        }
-
-        ///
-        /// The minimum angular change (measured in degrees) required to
-        /// generate new heading updates.
-        ///
-        public var filter: CLLocationDegrees {
-            get { return locationManager.headingFilter }
-            set { locationManager.headingFilter = newValue }
-        }
-
-        ///
-        /// The most recently reported heading.
-        ///
-        /// The value of this property is nil if heading updates have never
-        /// been initiated.
-        ///
-        public var heading: CLHeading? {
-            return locationManager.heading
-        }
-
-        ///
-        /// A Boolean value indicating whether the device is able to generate
-        /// heading updates.
-        ///
-        public var isAvailable: Bool {
-            return type(of: locationManager).headingAvailable()
-        }
-
-        ///
-        /// The device orientation to use when computing heading values.
-        ///
-        public var orientation: CLDeviceOrientation {
-            get { return locationManager.headingOrientation }
-            set { locationManager.headingOrientation = newValue }
-        }
-
-        ///
-        /// A Boolean value indicating whether the heading calibration view
-        /// should be displayed.
-        ///
-        public var shouldDisplayCalibration: Bool
-
-        ///
-        /// Dismisses the heading calibration view from the screen immediately.
-        ///
-        public func dismissCalibrationDisplay() {
-            locationManager.dismissHeadingCalibrationDisplay()
-        }
-
-        private let adapter: LocationManagerDelegateAdapter
-        private let handler: (Event) -> Void
-        private let locationManager: LocationManagerProtocol
-        private let queue: OperationQueue
-
-        override public func cleanupMonitor() {
-            locationManager.stopUpdatingHeading()
-
-            super.cleanupMonitor()
-        }
-
-        override public func configureMonitor() {
-            super.configureMonitor()
-
-            locationManager.startUpdatingHeading()
-        }
+        case didUpdate(Info)
     }
+
+    ///
+    /// Encapsulates information associated with a heading monitor event.
+    ///
+    public enum Info {
+        ///
+        /// The error encountered in attempting to obtain the heading.
+        ///
+        case error(Error)
+
+        ///
+        /// The updated heading.
+        ///
+        case heading(CLHeading)
+    }
+
+    ///
+    /// Initializes a new `HeadingMonitor`.
+    ///
+    /// - Parameters:
+    ///   - queue:      The operation queue on which the handler executes.
+    ///   - handler:    The handler to call when the heading of the device is
+    ///                 updated.
+    ///
+    public init(queue: OperationQueue,
+                handler: @escaping (Event) -> Void) {
+        self.adapter = .init()
+        self.handler = handler
+        self.locationManager = LocationManagerInjector.inject()
+        self.queue = queue
+        self.shouldDisplayCalibration = false
+
+        super.init()
+
+        self.adapter.didFail = { [unowned self] in
+            self.handler(.didUpdate(.error($0)))
+        }
+
+        self.adapter.didUpdateHeading = { [unowned self] in
+            self.handler(.didUpdate(.heading($0)))
+        }
+
+        self.adapter.shouldDisplayHeadingCalibration = { [unowned self] in
+            return self.shouldDisplayCalibration
+        }
+
+        self.locationManager.delegate = self.adapter
+    }
+
+    ///
+    /// The minimum angular change (measured in degrees) required to generate
+    /// new heading updates.
+    ///
+    public var filter: CLLocationDegrees {
+        get { return locationManager.headingFilter }
+        set { locationManager.headingFilter = newValue }
+    }
+
+    ///
+    /// The most recently reported heading.
+    ///
+    /// The value of this property is nil if heading updates have never been
+    /// initiated.
+    ///
+    public var heading: CLHeading? {
+        return locationManager.heading
+    }
+
+    ///
+    /// A Boolean value indicating whether the device is able to generate
+    /// heading updates.
+    ///
+    public var isAvailable: Bool {
+        return type(of: locationManager).headingAvailable()
+    }
+
+    ///
+    /// The device orientation to use when computing heading values.
+    ///
+    public var orientation: CLDeviceOrientation {
+        get { return locationManager.headingOrientation }
+        set { locationManager.headingOrientation = newValue }
+    }
+
+    ///
+    /// A Boolean value indicating whether the heading calibration view should
+    /// be displayed.
+    ///
+    public var shouldDisplayCalibration: Bool
+
+    ///
+    /// Dismisses the heading calibration view from the screen immediately.
+    ///
+    public func dismissCalibrationDisplay() {
+        locationManager.dismissHeadingCalibrationDisplay()
+    }
+
+    private let adapter: LocationManagerDelegateAdapter
+    private let handler: (Event) -> Void
+    private let locationManager: LocationManagerProtocol
+    private let queue: OperationQueue
+
+    override public func cleanupMonitor() {
+        locationManager.stopUpdatingHeading()
+
+        super.cleanupMonitor()
+    }
+
+    override public func configureMonitor() {
+        super.configureMonitor()
+
+        locationManager.startUpdatingHeading()
+    }
+}
 
 #endif

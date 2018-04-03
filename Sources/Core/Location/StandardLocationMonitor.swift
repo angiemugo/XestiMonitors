@@ -10,7 +10,9 @@
 import CoreLocation
 
 ///
-/// An `StandardLocationMonitor` instance monitors ...
+/// A `StandardLocationMonitor` instance monitors ...
+/// This framework provides several services that you can use to get and monitor the device’s current location.
+/// The standard location service offers a highly configurable way to get the current location and track changes.
 ///
 @available(watchOS 3.0, *)
 public class StandardLocationMonitor: BaseMonitor {
@@ -203,7 +205,7 @@ public class StandardLocationMonitor: BaseMonitor {
     #if os(iOS) || os(tvOS) || os(watchOS)
 
     ///
-    /// Requests the one-time delivery of the user’s current location.
+    /// Requests the one-time delivery of the device’s current location.
     ///
     public func requestLocation() {
         locationManager.requestLocation()
@@ -225,7 +227,7 @@ public class StandardLocationMonitor: BaseMonitor {
         super.configureMonitor()
 
         #if os(iOS) || os(macOS) || os(watchOS)
-            locationManager.startUpdatingLocation()
+        locationManager.startUpdatingLocation()
         #endif
     }
 }

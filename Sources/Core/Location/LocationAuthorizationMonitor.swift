@@ -10,7 +10,7 @@
 import CoreLocation
 
 ///
-/// An `LocationAuthorizationMonitor` instance monitors the app for updates to
+/// A `LocationAuthorizationMonitor` instance monitors the app for updates to
 /// its authorization to use location services.
 ///
 public class LocationAuthorizationMonitor: BaseMonitor {

@@ -9,138 +9,138 @@
 
 #if os(iOS)
 
-    import CoreLocation
+import CoreLocation
+
+///
+/// A `BeaconRangingMonitor` instance monitors ...
+/// While a beacon is in range of an iOS device, apps can also monitor for the relative distance to the beacon. You can use these capabilities to develop many types of innovative location-based apps.
+/// While a user’s device is inside a registered beacon region, apps can use the startRangingBeaconsInRegion: method of the CLLocationManager class to determine the relative proximity of one or more beacons in the region and to be notified when that distance changes.
+/// Reporting the range to nearby beacons.
+///
+public class BeaconRangingMonitor: BaseMonitor {
+    ///
+    /// Encapsulates changes to ...
+    ///
+    public enum Event {
+        ///
+        /// ...  has been updated.
+        ///
+        case didUpdate(Info)
+    }
 
     ///
-    /// An `BeaconRangingMonitor` instance monitors ...
+    /// Encapsulates information associated with a beacon ranging monitor
+    /// event.
     ///
-    public class BeaconRangingMonitor: BaseMonitor {
+    public enum Info {
         ///
-        /// Encapsulates changes to ...
         ///
-        public enum Event {
-            ///
-            /// ...  has been updated.
-            ///
-            case didUpdate(Info)
+        ///
+        case beacons([CLBeacon], CLBeaconRegion)
+
+        ///
+        /// The error encountered in attempting to ...
+        ///
+        case error(Error, CLBeaconRegion?)
+    }
+
+    ///
+    /// Initializes a new `BeaconRangingMonitor`.
+    ///
+    /// - Parameters:
+    ///   - regions:
+    ///   - queue:      The operation queue on which the handler executes.
+    ///   - handler:    The handler to call when ...
+    ///
+    public init(regions: Set<CLBeaconRegion> = [],
+                queue: OperationQueue,
+                handler: @escaping (Event) -> Void) {
+        self.adapter = .init()
+        self.handler = handler
+        self.locationManager = LocationManagerInjector.inject()
+        self.queue = queue
+        self.regions = regions
+
+        super.init()
+
+        self.adapter.didFail = { [unowned self] in
+            self.handler(.didUpdate(.error($0, nil)))
         }
 
-        ///
-        /// Encapsulates information associated with a beacon ranging monitor
-        /// event.
-        ///
-        public enum Info {
-            ///
-            ///
-            ///
-            case beacons([CLBeacon], CLBeaconRegion)
-
-            ///
-            /// The error encountered in attempting to ...
-            ///
-            case error(Error, CLBeaconRegion?)
+        self.adapter.didRangeBeacons = { [unowned self] in
+            self.handler(.didUpdate(.beacons($1, $0)))
         }
 
-        ///
-        /// Initializes a new `BeaconRangingMonitor`.
-        ///
-        /// - Parameters:
-        ///   - regions:
-        ///   - queue:      The operation queue on which the handler executes.
-        ///   - handler:    The handler to call when ...
-        ///
-        public init(regions: Set<CLBeaconRegion> = [],
-                    queue: OperationQueue,
-                    handler: @escaping (Event) -> Void) {
-            self.adapter = .init()
-            self.handler = handler
-            self.locationManager = LocationManagerInjector.inject()
-            self.queue = queue
-            self.regions = regions
-
-            super.init()
-
-            self.adapter.didFail = { [unowned self] in
-                self.handler(.didUpdate(.error($0, nil)))
-            }
-
-            self.adapter.didRangeBeacons = { [unowned self] in
-                self.handler(.didUpdate(.beacons($1, $0)))
-            }
-
-            self.adapter.rangingBeaconsDidFail = { [unowned self] in
-                self.handler(.didUpdate(.error($1, $0)))
-            }
-
-            self.locationManager.delegate = self.adapter
+        self.adapter.rangingBeaconsDidFail = { [unowned self] in
+            self.handler(.didUpdate(.error($1, $0)))
         }
 
-        ///
-        /// A Boolean value indicating whether the device supports ranging of
-        /// Bluetooth beacons.
-        ///
-        public var isAvailable: Bool {
-            return type(of: locationManager).isRangingAvailable()
-        }
+        self.locationManager.delegate = self.adapter
+    }
 
-        ///
-        /// The set of beacon regions currently being tracked using ranging.
-        ///
-        public var rangedRegions: Set<CLBeaconRegion> {
-            #if swift(>=4.1)
-            return Set(locationManager.rangedRegions.compactMap { $0 as? CLBeaconRegion })
-            #else
-            return Set(locationManager.rangedRegions.flatMap { $0 as? CLBeaconRegion })
-            #endif
-        }
+    ///
+    /// A Boolean value indicating whether the device supports ranging of
+    /// Bluetooth beacons.
+    ///
+    public var isAvailable: Bool {
+        return type(of: locationManager).isRangingAvailable()
+    }
 
-        //
-        // ??? The set of possible beacon regions being range monitored. ???
-        //
-        public private(set) var regions: Set<CLBeaconRegion>
+    ///
+    /// The set of beacon regions currently being tracked using ranging.
+    ///
+    public var rangedRegions: Set<CLBeaconRegion> {
+        #if swift(>=4.1)
+        return Set(locationManager.rangedRegions.compactMap { $0 as? CLBeaconRegion })
+        #else
+        return Set(locationManager.rangedRegions.flatMap { $0 as? CLBeaconRegion })
+        #endif
+    }
 
-        ///
-        /// ??? Starts the delivery of notifications for the specified beacon region. ???
-        ///
-        public func insertRegion(_ region: CLBeaconRegion) {
-            guard
-                regions.insert(region).inserted
-                else { return }
+    //
+    // ??? The set of possible beacon regions being range monitored. ???
+    //
+    public private(set) var regions: Set<CLBeaconRegion>
 
-            // only if monitoring has been started ...
-
+    ///
+    /// ??? Starts the delivery of notifications for the specified beacon region. ???
+    ///
+    public func insertRegion(_ region: CLBeaconRegion) {
+        if regions.insert(region).inserted,
+            isMonitoring {
             locationManager.startRangingBeacons(in: region)
         }
-
-        ///
-        /// ??? Stops the delivery of notifications for the specified beacon region. ???
-        ///
-        public func removeRegion(_ region: CLBeaconRegion) {
-            guard
-                regions.remove(region) != nil
-                else { return }
-
-            // only if monitoring has been stopped ???
-
-            locationManager.stopRangingBeacons(in: region)
-        }
-
-        private let adapter: LocationManagerDelegateAdapter
-        private let handler: (Event) -> Void
-        private let locationManager: LocationManagerProtocol
-        private let queue: OperationQueue
-
-        override public func cleanupMonitor() {
-            regions.forEach { locationManager.stopRangingBeacons(in: $0) }
-
-            super.cleanupMonitor()
-        }
-
-        override public func configureMonitor() {
-            super.configureMonitor()
-
-            regions.forEach { locationManager.startRangingBeacons(in: $0) }
-        }
     }
+
+    ///
+    /// ??? Stops the delivery of notifications for the specified beacon region. ???
+    ///
+    public func removeRegion(_ region: CLBeaconRegion) {
+        guard
+            regions.remove(region) != nil
+            else { return }
+
+        // only if monitoring has been stopped ???
+
+        locationManager.stopRangingBeacons(in: region)
+    }
+
+    private let adapter: LocationManagerDelegateAdapter
+    private let handler: (Event) -> Void
+    private let locationManager: LocationManagerProtocol
+    private let queue: OperationQueue
+
+    override public func cleanupMonitor() {
+        regions.forEach { locationManager.stopRangingBeacons(in: $0) }
+
+        super.cleanupMonitor()
+    }
+
+    override public func configureMonitor() {
+        super.configureMonitor()
+
+        regions.forEach { locationManager.startRangingBeacons(in: $0) }
+    }
+}
 
 #endif
