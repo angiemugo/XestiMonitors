@@ -87,8 +87,8 @@
         }
 
         ///
-        /// A Boolean value indicating whether ...
-        /// Returns a Boolean value indicating whether the device supports region monitoring using the specified class.
+        /// A Boolean value indicating whether the device supports region
+        /// monitoring.
         ///
         public var isAvailable: Bool {
             return type(of: locationManager).isMonitoringAvailable(for: CLRegion.self)
@@ -102,19 +102,19 @@
         }
 
         ///
-        /// The set of shared regions monitored by all location manager objects.
+        /// The set of regions currently being monitored.
         ///
         public var monitoredRegions: Set<CLRegion> {
             return locationManager.monitoredRegions
         }
 
         ///
-        /// Regions possibly being monitored ???
+        /// ??? Regions possibly being monitored ???
         ///
         public private(set) var regions: Set<CLRegion>
 
         ///
-        /// Starts monitoring the specified region.
+        /// ??? Starts monitoring the specified region. ???
         ///
         public func insertRegion(_ region: CLRegion) {
             guard
@@ -127,7 +127,7 @@
         }
 
         ///
-        /// Stops monitoring the specified region.
+        /// ??? Stops monitoring the specified region. ???
         ///
         public func removeRegion(_ region: CLRegion) {
             guard
@@ -140,7 +140,7 @@
         }
 
         ///
-        /// Retrieves the state of a region asynchronously.
+        /// Requests the state of a region.
         ///
         public func requestState(for region: CLRegion) {
             locationManager.requestState(for: region)

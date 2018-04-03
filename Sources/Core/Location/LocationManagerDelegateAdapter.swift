@@ -26,21 +26,21 @@ internal class LocationManagerDelegateAdapter: NSObject {
 
     public var didFail: ((Error) -> Void)?
 
-//    #if os(iOS) || os(macOS)
-//    public var didFinishDeferredUpdates: ((Error?) -> Void)?
-//    #endif
+    #if os(iOS) || os(macOS)
+    public var didFinishDeferredUpdates: ((Error?) -> Void)?
+    #endif
 
-//    #if os(iOS)
-//    public var didPauseLocationUpdates: (() -> Void)?
-//    #endif
+    #if os(iOS)
+    public var didPauseLocationUpdates: (() -> Void)?
+    #endif
 
     #if os(iOS)
     public var didRangeBeacons: ((CLBeaconRegion, [CLBeacon]) -> Void)?
     #endif
 
-//    #if os(iOS)
-//    public var didResumeLocationUpdates: (() -> Void)?
-//    #endif
+    #if os(iOS)
+    public var didResumeLocationUpdates: (() -> Void)?
+    #endif
 
     #if os(iOS) || os(macOS)
     public var didStartMonitoring: ((CLRegion) -> Void)?
@@ -64,9 +64,9 @@ internal class LocationManagerDelegateAdapter: NSObject {
     public var rangingBeaconsDidFail: ((CLBeaconRegion, Error) -> Void)?
     #endif
 
-//    #if os(iOS)
-//    public var shouldDisplayHeadingCalibration: (() -> Bool)?
-//    #endif
+    #if os(iOS)
+    public var shouldDisplayHeadingCalibration: (() -> Bool)?
+    #endif
 }
 
 extension LocationManagerDelegateAdapter: CLLocationManagerDelegate {
@@ -102,13 +102,12 @@ extension LocationManagerDelegateAdapter: CLLocationManagerDelegate {
         didFail?(error)
     }
 
-//    #if os(iOS) || os(macOS)
-//    func locationManager(_ manager: CLLocationManager,
-//                         didFinishDeferredUpdatesWithError error: Error?) {
-//        didFinishDeferredUpdates?(error)
-//    }
-
-//    #endif
+    #if os(iOS) || os(macOS)
+    func locationManager(_ manager: CLLocationManager,
+                         didFinishDeferredUpdatesWithError error: Error?) {
+        didFinishDeferredUpdates?(error)
+    }
+    #endif
 
     #if os(iOS)
     func locationManager(_ manager: CLLocationManager,
@@ -160,24 +159,21 @@ extension LocationManagerDelegateAdapter: CLLocationManagerDelegate {
     }
     #endif
 
-//    #if os(iOS)
-//    func locationManagerDidPauseLocationUpdates(_ manager: CLLocationManager) {
-//        didPauseLocationUpdates?()
-//    }
+    #if os(iOS)
+    func locationManagerDidPauseLocationUpdates(_ manager: CLLocationManager) {
+        didPauseLocationUpdates?()
+    }
+    #endif
 
-//    #endif
+    #if os(iOS)
+    func locationManagerDidResumeLocationUpdates(_ manager: CLLocationManager) {
+        didResumeLocationUpdates?()
+    }
+    #endif
 
-//    #if os(iOS)
-//    func locationManagerDidResumeLocationUpdates(_ manager: CLLocationManager) {
-//        didResumeLocationUpdates?()
-//    }
-
-//    #endif
-
-//    #if os(iOS)
-//    func locationManagerShouldDisplayHeadingCalibration(_ manager: CLLocationManager) -> Bool {
-//        return shouldDisplayHeadingCalibration?() ?? false
-//    }
-
-//    #endif
+    #if os(iOS)
+    func locationManagerShouldDisplayHeadingCalibration(_ manager: CLLocationManager) -> Bool {
+        return shouldDisplayHeadingCalibration?() ?? false
+    }
+    #endif
 }

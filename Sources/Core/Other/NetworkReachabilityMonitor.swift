@@ -117,7 +117,7 @@
 
         ///
         /// A Boolean value indicating whether the network node name or address
-        /// can be reached (`true`) or not (`false`).
+        /// can be reached.
         ///
         public var isReachable: Bool {
             #if os(iOS)
@@ -129,8 +129,7 @@
 
         ///
         /// A Boolean value indicating whether the network node name or address
-        /// can be reached via a non-cellular connection (`true`) or not
-        /// (`false`).
+        /// can be reached via a non-cellular connection.
         ///
         public var isReachableViaWiFi: Bool {
             return status == .reachableViaWiFi
@@ -140,7 +139,7 @@
 
         ///
         /// A Boolean value indicating whether the network node name or address
-        /// can be reached via a cellular connection (`true`) or not (`false`).
+        /// can be reached via a cellular connection.
         ///
         public var isReachableViaWWAN: Bool {
             return status == .reachableViaWWAN
